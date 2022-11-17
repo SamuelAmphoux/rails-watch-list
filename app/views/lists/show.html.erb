@@ -1,0 +1,28 @@
+<h1>List Show: <%= @list.name %></h1>
+
+<div>
+  <% @list.bookmarks.each do |bookmark| %>
+    <li>
+      <p>
+        <%= bookmark.comment %>
+      </p>
+      <p>
+        Movies : <%= bookmark.movie.title %>
+      </p>
+      <p>
+        <%= link_to "Delete",
+          bookmark_path(bookmark),
+          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+        %>
+      </p>
+      <%=  %>
+    </li>
+  <% end %>
+</div>
+
+<%= link_to new_list_bookmark_path(@list), remote:true do %>
+  <button type="button" class="btn btn-primary">New Bookmark</button>
+<% end %>
+<%= link_to lists_path, remote:true do %>
+  <button type="button" class="btn btn-primary">Back</button>
+<% end %>

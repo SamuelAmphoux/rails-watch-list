@@ -1,0 +1,17 @@
+<div class="banner" style="background-image: url(../../images/theater.png)">
+  <div class="container">
+    <h1>Lists <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
+    <p>Change your life and learn to code at one of our campuses around the world.</p>
+    <a class="btn btn-flat" href="#">Apply now</a>
+  </div>
+</div>
+
+
+
+<ul>
+  <% @lists.each do |list| %>
+    <li><%= link_to "#{list.name}", list_path(list) %></li>
+  <% end %>
+</ul>
+
+<%= link_to "Add a new list", new_list_path %>
