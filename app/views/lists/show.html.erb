@@ -1,5 +1,7 @@
 <h1>List Show: <%= @list.name %></h1>
 
+<%= cl_image_tag @article.banner.key, height: 300, width: 400, crop: :fill %>
+
 <div>
   <% @list.bookmarks.each do |bookmark| %>
     <li>

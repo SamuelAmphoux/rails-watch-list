@@ -3,6 +3,7 @@
 <%= simple_form_for(@list) do |f| %>
 
   <%= f.input :name %>
+  <%= f.input :banner, as: :file %>
 
   <%= f.button :submit, class: "btn-primary" %>
   <%= f.button :button, "Reset form", type: "reset", class: "btn-outline-secondary" %>
