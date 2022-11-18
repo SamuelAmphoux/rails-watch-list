@@ -1,15 +1,26 @@
-<div class="banner" style="background-image: url(../../images/theater.png)">
+<div class="banner" style="background-image: url('<%=asset_path('theater.png')%>')">
   <div class="container">
-    <h1>Lists <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
-    <p>Change your life and learn to code at one of our campuses around the world.</p>
-    <a class="btn btn-flat" href="#">Apply now</a>
+    <div class="banner_container">
+      <div>
+        <h1>Here are the Movie Lists</h1>
+        <p>Broaden one's horizons with these selections of movies !</p>
+      </div>
+      <div>
+        <%= link_to new_list_path, remote:true do %>
+          <button type="button" class="btn btn-primary">Add a new list</button>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 
-<ul>
+<div class="cards">
   <% @lists.each do |list| %>
-    <li><%= link_to "#{list.name}", list_path(list) %></li>
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= list.banner.attached? ? cl_image_path(list.banner.key, height: 300, crop: :fill) : asset_path('default_list') %>')">
+            <%= link_to "#{list.name}", list_path(list) %>
+            <div class="delete_tag">
+              <%= link_to "Delete", list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+            </div>
+          </div>
   <% end %>
-</ul>
-
-<%= link_to "Add a new list", new_list_path %>
+</div>
