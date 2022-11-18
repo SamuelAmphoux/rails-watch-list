@@ -6,10 +6,6 @@
   </div>
 </div>
 
-<%= cl_image_tag("f9crik2vyei19nz80jis",
-      width: 400, height: 300, crop: :fill) %>
-
-
 <ul>
   <% @lists.each do |list| %>
     <li><%= link_to "#{list.name}", list_path(list) %></li>
