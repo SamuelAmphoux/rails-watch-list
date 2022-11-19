@@ -17,7 +17,7 @@
 <div class="container">
   <div class="cards">
     <% @lists.each do |list| %>
-            <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= list.banner.attached? ? cl_image_path(list.banner.key, height: 300, crop: :fill) : asset_path('default_list') %>')">
+            <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= list.banner.attached? ? cl_image_path(list.banner.key, height: 300, crop: :fill) : asset_path('default_list.png') %>')">
               <div class="list_name">
                <%= link_to "#{list.name.capitalize}", list_path(list) %>
               </div>
