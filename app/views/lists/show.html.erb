@@ -1,33 +1,50 @@
 <div class="banner" style="background-image: url('<%= @list.banner.attached? ? cl_image_path(@list.banner.key, height: 300, crop: :fill) : asset_path('default_list') %>')">
   <div class="container">
-    <h2>List Show: <%= @list.name %></h1>
+    <div class="banner_container">
+      <div>
+        <h1><%= @list.name %></h1>
+        <p></p>
+      </div>
+    </div>
   </div>
 </div>
 
+<div class="container">
 <div class="cards">
   <% @list.bookmarks.each do |bookmark| %>
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= bookmark.movie.poster_url %>')">
+          <div class="card-bookmark">
+            <div>
+              <%= image_tag bookmark.movie.poster_url, alt: "Movie Poster", width: 120 %>
+            </div>
             <div>
               <p>
-                Movies : <%= bookmark.movie.title %>
+                <%= bookmark.movie.title %>
               </p>
               <p>
                 <%= bookmark.comment %>
               </p>
             </div>
-            <div>
-              <%= link_to "Delete",
-              bookmark_path(bookmark),
-              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-               %>
-             </div>
+            <div class="delete_tag">
+              <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, remote:true do %>
+                <i class="fa-solid fa-trash-can"></i>
+              <% end  %>
+            </div>
           </div>
   <% end %>
 </div>
+</div>
 
-<%= link_to new_list_bookmark_path(@list), remote:true do %>
-  <button type="button" class="btn btn-primary">New Bookmark</button>
-<% end %>
-<%= link_to lists_path, remote:true do %>
-  <button type="button" class="btn btn-primary">Back</button>
-<% end %>
+<div class="container">
+  <div class="bookmarks_footer">
+    <div>
+      <%= link_to new_list_bookmark_path(@list), remote:true do %>
+        <button type="button" class="btn btn-primary">New Bookmark</button>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to lists_path, remote:true do %>
+        <button type="button" class="btn btn-primary">Back</button>
+      <% end %>
+    </div>
+  </div>
+</div>

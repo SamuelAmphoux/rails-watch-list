@@ -14,13 +14,19 @@
   </div>
 </div>
 
-<div class="cards">
-  <% @lists.each do |list| %>
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= list.banner.attached? ? cl_image_path(list.banner.key, height: 300, crop: :fill) : asset_path('default_list') %>')">
-            <%= link_to "#{list.name}", list_path(list) %>
-            <div class="delete_tag">
-              <%= link_to "Delete", list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<div class="container">
+  <div class="cards">
+    <% @lists.each do |list| %>
+            <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= list.banner.attached? ? cl_image_path(list.banner.key, height: 300, crop: :fill) : asset_path('default_list') %>')">
+              <div class="list_name">
+               <%= link_to "#{list.name.capitalize}", list_path(list) %>
+              </div>
+              <div class="delete_tag">
+                <%= link_to list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, remote:true do %>
+                  <i class="fa-solid fa-trash-can"></i>
+                <% end %>
+              </div>
             </div>
-          </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
